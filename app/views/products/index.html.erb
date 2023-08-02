@@ -1,0 +1,23 @@
+<h1> This is product table  </h1>
+<table>
+  <thead>
+    <style>
+      table, th, td {
+      border: 1px solid black;
+    }
+  </style>
+  <tr>
+  <th>Product_name</th>
+  <th>Price</th>
+  <th colspan="3">Action</th>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>
+         <tr>
+          <td> <%= product.product_name %> </td>
+          <td> <%= product.price%> </td>
+          <th> <%= link_to 'View',company_product_path(@company, product.id)%></th>
+          </tr>
+        <%end %>  
+    </tbody>
+</table>

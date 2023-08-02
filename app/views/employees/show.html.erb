@@ -1,0 +1,40 @@
+<h1>This is the Empolyee Details</h1>
+<table>
+    <style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+  <tbody>
+  <div>
+  <tr>
+  <th><p><strong>Name:</strong></p></th>
+ <p><td> <%= @employee.name%> </p></td>
+    </div>
+
+    <div>
+    </tr>
+    <tr>
+  <th><p><strong>Email:</strong></p></th>
+    <td><p><%=@employee.email %> </p></td>
+    </tr>
+    </div>
+
+    <div>
+    <tr>
+  <th><p><strong>Contact:</strong></p></th>
+    <td><p><%=@employee.contact %> </p></td>
+    </tr>
+    </div>
+
+</tbody>
+</table>
+
+<%= link_to "Back",company_employees_path(@company,@employee) %><br>
+
+<%= link_to "Edit",edit_company_employee_path(@company,@employee) %><br>
+
+<td> <%= link_to "Delete", company_employee_path(@company,@employee), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?" } %> </td>
+

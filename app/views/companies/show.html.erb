@@ -1,0 +1,35 @@
+<h1>This is the Company Details</h1>
+
+<table>
+    <style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+  <tbody>
+  <div>
+  <tr>
+  <th><p><strong>Name:</strong></p></th>
+    <td><p><%=@company.name %> </p></td>
+    </div>
+
+    <div>
+    </tr>
+    <tr>
+  <th><p><strong>Owner_Name:</strong></p></th>
+    <td><p><%=@company.owner_name %> </p></td>
+    </tr>
+    </div>
+
+    <div>
+    <tr>
+  <th><p><strong>Address:</strong></p></th>
+    <td><p><%=@company.address %> </p></td>
+    </tr>
+    </div>
+
+</tbody>
+</table>
+<%= link_to "Edit",edit_company_path %><br>
+<%= link_to "Back",companies_path %> <br>
+<%= link_to "Show Employee",company_employees_path(@company) %>

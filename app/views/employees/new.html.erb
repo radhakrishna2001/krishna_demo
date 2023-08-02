@@ -1,0 +1,40 @@
+<h1>This is new employee</h1>
+
+<%= form_with model: [@company,@company.employees.build] do  |form| %>
+
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+    <% @company.employees.each do |employee| %>
+    <% employee.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+      <% end %>
+    <% end %>
+  </div>
+
+  
+  <div>
+    <%= form.label :email %><br>
+    <%= form.email_field :email %>
+     <% @company.employees.each do |employee| %>
+    <% employee.errors.full_messages_for(:email).each do |message| %>
+      <div><%= message %></div>
+      <% end %>
+    <% end %>
+  </div>
+
+  
+  <div>
+    <%= form.label :contact %><br>
+    <%= form.number_field :contact%> 
+    <% @company.employees.each do |employee| %>
+    <% employee.errors.full_messages_for(:contact).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+ <% end %>

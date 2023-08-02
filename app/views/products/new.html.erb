@@ -1,0 +1,28 @@
+<h1>This is new product</h1>
+
+<%= form_with model: [@company,@company.products.build] do  |form| %>
+   <div>
+    <%= form.label :ProductName %><br>
+    <%= form.text_field :product_name %>
+    <% @company.products.each do |product| %>
+    <% product.errors.full_messages_for(:product_name).each do |message| %>
+      <div><%= message %></div>
+      <% end %>
+    <% end %>
+  </div>
+
+  
+  <div>
+    <%= form.label :Price %><br>
+    <%= form.number_field :price %>
+     <% @company.products.each do |product| %>
+    <% product.errors.full_messages_for(:price).each do |message| %>
+      <div><%= message %></div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+ <% end %>

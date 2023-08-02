@@ -1,0 +1,34 @@
+<h1>This is new company</h1>
+
+<%= form_with model: @company do  |form| %>
+
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+    <% @company.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :owner_name %><br>
+    <%= form.text_field :owner_name %>
+    <% @company.errors.full_messages_for(:owner_name).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :address %><br>
+    <%= form.text_field :address %>
+    <% @company.errors.full_messages_for(:address).each do |message| %>
+    <div><%= message %></div>
+    <% end %>
+  </div>
+  </div>
+
+  <div>
+  <%= form.submit %>
+  </div>
+
+ <% end %>
