@@ -1,0 +1,20 @@
+<%= form_with model: @customer do |form| %>
+  <div>
+  <%= form.label :name %><br>
+  <%= form.text_field :name %>
+  </div>
+  
+  <div>
+  <%= form.label :contact %><br>
+  <%= form.telephone_field :contact %>
+  </div>
+
+ <h3>Select Company</h3>
+  <div class = "field">
+    <%#= form.label :company_id, "Select Companies" %>
+    <%= form.collection_select :comapnies_ids, Company.all, :id, :name, multiple: true  %>
+    <%#= form.select :company_id, options_for_select(@companies.map { |c| [c.name, c.id] }, @customer.company_ids), include_blank: true  %>
+  </div>
+
+  <%= form.submit "Submit" %>
+<% end %>

@@ -9,9 +9,9 @@ Rails.application.routes.draw do
     resources :employees
   end
    
-   resources :companies  do 
+  resources :companies  do 
     resources :products
   end
-
-
+  #resources :companies
+  resources :customers
 end

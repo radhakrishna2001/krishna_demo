@@ -2,6 +2,7 @@ class Company < ApplicationRecord
   has_many :employees
   has_many :products
   has_many :employees, :dependent => :destroy
+  has_and_belongs_to_many :customers
 
   
   #validates :

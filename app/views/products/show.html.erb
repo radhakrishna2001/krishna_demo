@@ -1,0 +1,28 @@
+<h1>This is the Produts Deatiles </h1>
+<table>
+    <style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+  <tbody>
+  <div>
+  <tr>
+  <th><p><strong>Product_name:</strong></p></th>
+ <p><td> <%= @product.product_name%> </p></td>
+    </div>
+
+    <div>
+    </tr>
+    <tr>
+  <th><p><strong>Price:</strong></p></th>
+    <td><p><%=@product.price %> </p></td>
+    </tr>
+    </div>
+</tbody>
+</table>
+<%= link_to "Edit",edit_company_product_path(@company,@product) %><br>
+<%= link_to "Back",company_products_path(@company,@product) %><br>
+<%= link_to "Delete", company_product_path(@company,@product), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?" } %>

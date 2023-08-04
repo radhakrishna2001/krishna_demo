@@ -1,0 +1,16 @@
+<h1>This is the Edit Products Details</h1>
+<%= form_with model:[@company,@product] do |form| %>
+<div>
+  <%= form.label :product_name %><br>
+  <%= form.text_field :product_name %>
+</div>
+
+<div>
+  <%= form.label :price %><br>
+  <%= form.number_field :price %>
+</div>
+
+<div>
+  <%= form.submit %>
+</div>
+<% end %>
