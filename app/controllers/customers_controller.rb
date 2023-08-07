@@ -7,13 +7,13 @@ class CustomersController < ApplicationController
   end
 
   def create
-    binding.pry
+
     # @customer = Customer.new(customer_params)    
     company = Company.find(params[:customer][:comapnies_ids])
-    binding.pry
-    cus = Customer.new(customer_params)
-    company.customers << cus
-    if cus.save
+  
+    @customer = Customer.new(customer_params)
+    if @customer.save
+      company.customers << @customer
       redirect_to customers_path
     else
       @companies = Company.all
