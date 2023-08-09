@@ -6,7 +6,7 @@
     <%= form.text_field :product_name %>
     <% @company.products.each do |product| %>
     <% product.errors.full_messages_for(:product_name).each do |message| %>
-      <div><%= message %></div>
+      <div class="text-danger"><%= message %></div>
       <% end %>
     <% end %>
   </div>
@@ -17,12 +17,12 @@
     <%= form.number_field :price %>
      <% @company.products.each do |product| %>
     <% product.errors.full_messages_for(:price).each do |message| %>
-      <div><%= message %></div>
+      <div class="text-danger"><%= message %></div>
       <% end %>
     <% end %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="mt-3">
+    <%= form.submit "Create",class:"btn btn-outline-primary" %>
   </div>
  <% end %>

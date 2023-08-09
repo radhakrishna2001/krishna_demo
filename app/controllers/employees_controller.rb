@@ -33,7 +33,7 @@ class EmployeesController < ApplicationController
 
       redirect_to company_employee_path(@company,@employee)
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

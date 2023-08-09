@@ -1,13 +1,13 @@
-<h1>This is new employee</h1>
+<h1> Create employee</h1>
 
 <%= form_with model: [@company,@company.employees.build] do  |form| %>
 
   <div>
-    <%= form.label :name %><br>
+    <%= form.label :name %> <br>
     <%= form.text_field :name %>
     <% @company.employees.each do |employee| %>
     <% employee.errors.full_messages_for(:name).each do |message| %>
-      <div><%= message %></div>
+      <div class="text-danger"><%= message %></div>
       <% end %>
     <% end %>
   </div>
@@ -18,7 +18,7 @@
     <%= form.email_field :email %>
      <% @company.employees.each do |employee| %>
     <% employee.errors.full_messages_for(:email).each do |message| %>
-      <div><%= message %></div>
+      <div class="text-danger"><%= message %></div>
       <% end %>
     <% end %>
   </div>
@@ -29,12 +29,12 @@
     <%= form.telephone_field :contact%> 
     <% @company.employees.each do |employee| %>
     <% employee.errors.full_messages_for(:contact).each do |message| %>
-    <div><%= message %></div>
+    <div class="text-danger"><%= message %></div>
     <% end %>
     <% end %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="mt-3">
+    <%= form.submit "Create",class: "btn btn-outline-primary" %>
   </div>
  <% end %>
