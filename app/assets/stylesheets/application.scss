@@ -25,7 +25,8 @@
   text-decoration: none;
 }
 
-thead {
-  background-color: blue; 
-  color: white; 
+
+.table-hover tbody tr:hover
+{
+  background-color: #d3d3d3;
 }

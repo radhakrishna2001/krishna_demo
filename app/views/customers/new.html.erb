@@ -1,9 +1,10 @@
 <%= form_with model: @customer do |form| %>
+
   <div>
   <%= form.label :name %><br>
   <%= form.text_field :name %>
   <% @customer.errors.full_messages_for(:name).each do |message| %>
-      <div><%= message %></div>
+      <div class="text-danger"><%= message %></div>
     <% end %>
   </div>
   
@@ -11,16 +12,18 @@
   <%= form.label :contact %><br>
   <%= form.telephone_field :contact %>
   <% @customer.errors.full_messages_for(:contact).each do |message| %>
-      <div><%= message %></div>
+      <div class="text-danger"><%= message %></div>
     <% end %>
   </div>
 
- <h3>Select Company</h3>
+  <h3>Select Company</h3>
   <div class = "field">
     <%#= form.label :company_id, "Select Companies" %>
     <%= form.collection_select :comapnies_ids, Company.all, :id, :name, multiple: true  %>
     <%#= form.select :company_id, options_for_select(@companies.map { |c| [c.name, c.id] }, @customer.company_ids), include_blank: true  %>
   </div>
-
-  <%= form.submit "Submit" %>
+   
+  <div class="mt-3">
+    <%= form.submit "Submit",class:"btn btn-outline-primary" %>
+  </div>
 <% end %>

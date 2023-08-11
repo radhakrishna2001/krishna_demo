@@ -1,4 +1,8 @@
 class CustomersController < ApplicationController
+    
+  def index
+    @customers = Customer.all
+  end
   def new
     @companies = Company.all
     # com = Company.find(params[:id])
@@ -22,10 +26,10 @@ class CustomersController < ApplicationController
   end
 
   private
-  def customer_params
-    params.require(:customer).permit(:name, :contact)
-   #@customer.company_ids = params[:customer][:company_ids]
-  end
+    def customer_params
+      params.require(:customer).permit(:name, :contact)
+      #@customer.company_ids = params[:customer][:company_ids]
+    end
 end
 
 #@customer.company_ids = params[:customer][:company_ids]

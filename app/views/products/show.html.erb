@@ -1,35 +1,51 @@
-<h1>This is the Produts Deatiles </h1>
-<table>
-    <style>
-table, th, td {
-  border: 1px solid black;
-}
-</style>
-  <tbody>
-  <div>
-  <tr>
-  <th><p><strong>Product_name:</strong></p></th>
- <p><td> <%= @product.product_name%> </p></td>
-    </div>
+<div class="card">
+  <div class="card-header p-0">
+    <h3 class="card-title mb-0">Produts_Deatiles </h3>
+  </div>
 
+  <style>
+    table {
+/*    border: 1px solid black;*/
+    }
+  </style>
+
+  <div class="card-body p-0">
+    <table class="table table-hover table-sm mb-0">
+      <tbody>
+      <div>
+        <tr>
+        <th><strong>Product_name:</strong></th>
+        <td> <%= @product.product_name%></td>
+        </tr>
+      </div>
+
+      <div>
+        <tr>
+        <th><strong>Price:</strong></th>
+        <td><%=@product.price %></td>
+        </tr>
+      </div>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-footer p-0">
     <div>
-    </tr>
-    <tr>
-  <th><p><strong>Price:</strong></p></th>
-    <td><p><%=@product.price %> </p></td>
-    </tr>
+    <%= link_to "Edit",edit_company_product_path(@company,@product),class:"btn btn-outline-success" %>
+    <%= link_to "Back",company_products_path(@company,@product),class: "btn btn-outline-primary" %>
     </div>
-</tbody>
-</table>
-
-<div class="mt-3">
-  <%= link_to "Edit",edit_company_product_path(@company,@product),class:"btn btn-outline-success" %>
-  <%= link_to "Back",company_products_path(@company,@product),class: "btn btn-outline-primary" %>
-</div>
 
 
-<div class="mt-2">
-<%= link_to "Delete", company_product_path(@company,@product), data: {
+    <div class="mt-1">
+    <%= link_to "Delete", company_product_path(@company,@product), data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?" },class:"btn btn-outline-danger" %>
+    </div>
+
+    <% if flash[:notice] %>
+      <div class="alert alert-success" role="alert">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+</div>
 </div>
