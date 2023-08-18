@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_company, only:[:show,:edit,:update,:destroy]
 
  
@@ -37,9 +38,16 @@ class CompaniesController < ApplicationController
 
 
   def destroy
+
     @company.destroy
     flash[:notice] = "company was seccessfully deleted"
        redirect_to companies_path 
+  end
+  def dashboard
+    @user = User.find(params[:id])
+    @company = @user.company
+    @products = @company.products
+    @employees = @company.employees
   end
 
 
@@ -50,6 +58,6 @@ class CompaniesController < ApplicationController
      end
 
     def company_params
-      params.require(:company).permit(:name,:owner_name,:address)
+      params.require(:company).permit(:name,:owner_name,:address,employees_attributes:[:name,:email,:contact])
     end
 end

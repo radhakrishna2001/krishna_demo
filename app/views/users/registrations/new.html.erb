@@ -20,10 +20,26 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
+ 
+    <%= f.fields_for :company do |company_fields| %>
+      <div>
+      <%= company_fields.label :company_name %><br>
+      <%= company_fields.text_field :name %>
+    </div>
+    <div>
+       <%= company_fields.label :owner_name %><br>
+      <%= company_fields.text_field :owner_name %>
+    </div>
+      <div>
+       <%= company_fields.label :address %><br>
+      <%= company_fields.text_field :address %>
+    </div>
+      <% end %>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
+      
 <% end %>
 
 <%= render "users/shared/links" %>

@@ -26,6 +26,17 @@
     <div class="text-danger"><%= message %></div>
     <% end %>
   </div>
+
+  <%= form.fields_for :users do |user_fields| %>
+      <%= user_fields.label :email %><br>
+      <%= user_fields.email_field :email %><br>
+
+      <%= user_fields.label :password %><br>
+      <%= user_fields.password_field :password %>
+
+      <%= user_fields.label :password_confirmation %><br>
+      <%= user_fields.password_field :password_confirmation %>
+      <% end %> 
   
   <div class="mt-3">
    <%= form.submit "Create company",class:" btn btn-outline-primary"%>

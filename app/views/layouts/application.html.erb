@@ -13,6 +13,7 @@
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-success">
+     <% if current_user %>
     <a class="navbar-brand text-light" href="#">CrmProject</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -27,7 +28,7 @@
       <li><%= link_to "Company",companies_path,class:"nav-link text-light" %></li>
 
       <li class="nav-item">
-        <a class="nav-link text-light" href="#">Pricing</a>
+        <a class="nav-link text-light" href="#">Product</a>
       </li>
       <li class="nav-item">
         <a class="nav-link  text-light " href="#">About</a>
@@ -43,6 +44,7 @@
     <li><%= link_to "Signup",new_user_registration_path,class:"nav-link text-light" %></li>
     <% end %>
     </ul>
+    <% end %>
     </nav>
 
     <!-- <p class="notice"><%= notice %></p>

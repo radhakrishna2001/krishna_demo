@@ -1,0 +1,10 @@
+<% if resource.errors.empty? %>
+  <p>Registration successful!</p>
+<% else %>
+  <p>There was an error with your registration:</p>
+  <ul>
+    <% resource.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
