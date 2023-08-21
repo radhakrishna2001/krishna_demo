@@ -15,9 +15,9 @@ class CompaniesController < ApplicationController
     @company = Company.create(company_params)
     if @company.save
       flash[:notice] = "company was successfully created"
-    redirect_to companies_path 
+      #redirect_to companies_path 
     else
-      render :new,  status: :unprocessable_entity 
+      #render :new,  status: :unprocessable_entity 
     end
   end
 
@@ -43,11 +43,13 @@ class CompaniesController < ApplicationController
     flash[:notice] = "company was seccessfully deleted"
        redirect_to companies_path 
   end
+  
   def dashboard
-    @user = User.find(params[:id])
-    @company = @user.company
-    @products = @company.products
-    @employees = @company.employees
+    @company = current_user.company
+    # @user = User.find(params[:id])
+    # @company = @user.company
+    # @products = @company.products
+    # @employees = @company.employees
   end
 
 
@@ -58,6 +60,6 @@ class CompaniesController < ApplicationController
      end
 
     def company_params
-      params.require(:company).permit(:name,:owner_name,:address,employees_attributes:[:name,:email,:contact])
+      params.require(:company).permit(:name,:owner_name,:address)
     end
 end

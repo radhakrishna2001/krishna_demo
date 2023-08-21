@@ -4,9 +4,20 @@ class ApplicationController < ActionController::Base
 
 
   
-   protected
+   #protected
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, company_attributes: [:name, :owner_name,:address]])
   end
+
+   # def after_sign_up_path_for(resource)
+   #  binding.pry
+   #    if resource.company
+   #      #company_dashboard_path(resource.company)
+   #      binding.pry
+   #      root_path
+   #    else        
+   #     super
+   #    end
+   #  end
 end

@@ -26,9 +26,10 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
     protected
+
     def after_sign_in_path_for(resource)
       if resource.company
-        dashboard_company_path(resource)
+       dashboard_companies_path
       else
        super
       end

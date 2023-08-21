@@ -12,9 +12,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+     #super do |resource|
+       super do |resource|
+    if resource.company
+      resource.company.save
+      redirect_to dashboard_companies_path
+       return true
+    end
+  end
+  end
 
   # GET /resource/edit
   # def edit
@@ -40,7 +47,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  #protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -54,11 +61,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
-  #   super(resource)
+  #   company_dashboard_path(resource.company)
+  #    #company_path(resource.company)
   # end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+   #  protected 
+   #  def after_sign_up_path_for(resource)
+   #     if resource.company
+   #      #if resource.company.save
+   #         binding.pry  
+   #        redirect_to dashboard_company_path(resource.company) 
+   #        return 
+   #      #end
+   #    end
+   # end
+
 end
