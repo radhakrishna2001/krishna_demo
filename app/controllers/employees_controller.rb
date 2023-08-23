@@ -1,4 +1,5 @@
 class EmployeesController < ApplicationController
+  before_action :authenticate_user!
   before_action :fetch_company, only:[:index,:new,:create,:show,:edit,:update,:destroy]
   before_action :set_employee,  only:[:show,:edit,:update,:destroy]
 

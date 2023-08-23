@@ -5,6 +5,10 @@ Rails.application.routes.draw do
         registrations: 'users/registrations',
         sessions: 'users/sessions'             
       }
+      devise_scope :user do  
+        get '/users/employee_new', :to => 'users/registrations#employee_new'
+        post '/users/employee_create',:to => 'users/registrations#employee_create'
+      end
     #devise_for :users, controllers: { registrations: 'registrations' }
    # resources :companies, only: [:new, :create]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

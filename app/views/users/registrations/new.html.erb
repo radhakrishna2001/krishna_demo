@@ -3,6 +3,7 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
 
+  
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -20,7 +21,9 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
- 
+    
+
+    
     <%= f.fields_for :company do |company_fields| %>
       <div>
       <%= company_fields.label :company_name %><br>
@@ -34,7 +37,18 @@
        <%= company_fields.label :address %><br>
       <%= company_fields.text_field :address %>
     </div>
-      <% end %>
+  
+    <% end %>
+
+   <!--  <#div class="field">
+    <%#= f.label :role %><br>
+    <%#= f.radio_button :role, 'admin',checked:resource.admin? %>
+    <%#= f.label :role, 'admin'%>
+
+    <%#= f.radio_button :role, 'normal',checked:resource.normal? %>
+    <%#= f.label :role, :normal %>
+    </div -->
+
 
   <div class="actions">
     <%= f.submit "Sign up" %>

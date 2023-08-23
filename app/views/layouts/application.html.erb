@@ -39,12 +39,13 @@
         <a class="nav-link text-light" href="/companies/dashboard">Home <span class="sr-only"></span></a>
       </li>
 
-      <li><%= link_to "Company", companies_path,class:"nav-link text-light" %></li>
+      <li><%#= link_to "Company", company_path(current_user.company),class:"nav-link text-light" %></li>
 
-      <li><%= link_to "product",company_products_path(@company),class:"nav-link text-light"%> 
+
+      <li><%#= link_to "Product",company_products_path(@company),class:"nav-link text-light"%> 
       </li>
       <li class="nav-item">
-        <a class="nav-link  text-light " href="#">About</a>
+       <%# link_to "Employe ",company_employees_path(@company),class: "nav-link text-light" %>
       </li>
     </ul>
    </div>  

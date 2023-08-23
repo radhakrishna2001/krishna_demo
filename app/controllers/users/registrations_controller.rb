@@ -22,6 +22,32 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
   end
+   
+    def employee_new 
+       build_resource(sign_up_params)
+      # @company = Company.find(params[:company_id])
+       #@user = @company.users.new
+    end
+
+  def employee_create
+    build_resource(sign_up_params)
+    selected_company_id = params[:user][:company_id]
+    resource.company_id = selected_company_id if selected_company_id.present?
+
+    if resource.save
+      sign_in(resource_name, resource)
+      yield resource if block_given?
+      redirect_to dashboard_companies_path
+
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      render :employee_new
+    end
+  end
+
+  # ... other actions ...
+#end
 
   # GET /resource/edit
   # def edit
