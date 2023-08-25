@@ -1,9 +1,19 @@
-<h2>Sign up</h2>
 
+<h2>Sign up</h2>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
 
-  
+
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true %>
+  </div> 
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autofocus: true %>
+  </div>  
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -22,23 +32,23 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
     
-
-    
-    <%= f.fields_for :company do |company_fields| %>
+    <%= f.fields_for :company_attributes do |company_fields| %>
       <div>
       <%= company_fields.label :company_name %><br>
       <%= company_fields.text_field :name %>
-    </div>
-    <div>
+      </div>
+
+      <div>
        <%= company_fields.label :owner_name %><br>
       <%= company_fields.text_field :owner_name %>
-    </div>
+      </div>
+
       <div>
        <%= company_fields.label :address %><br>
       <%= company_fields.text_field :address %>
-    </div>
+      </div>
   
-    <% end %>
+    <%end%>
 
    <!--  <#div class="field">
     <%#= f.label :role %><br>
@@ -53,7 +63,5 @@
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
-      
 <% end %>
-
 <%= render "users/shared/links" %>

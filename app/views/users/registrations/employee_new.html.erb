@@ -2,6 +2,16 @@
 <%= form_for(resource, as: resource_name, url: users_employee_create_path) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
 
+
+ 
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true %>
+  </div> 
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autofocus: true %>
+  </div>  
   
   <div class="field">
     <%= f.label :email %><br />
@@ -32,3 +42,4 @@
 <% end %>
 
 <%= render "users/shared/links" %>
+<%#users_employee_create_path%>
