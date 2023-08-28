@@ -31,7 +31,7 @@ class Users::SessionsController < Devise::SessionsController
       if resource.company
        dashboard_companies_path
       else
-       super
+       render :employee_new
       end
     end
 end

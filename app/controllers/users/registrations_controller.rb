@@ -6,7 +6,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
     super do 
-
       resource.build_company
     end
   end

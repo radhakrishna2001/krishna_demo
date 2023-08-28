@@ -35,4 +35,5 @@ Rails.application.routes.draw do
   #resources :companies
   # resources :companies do
   # end
+  match '*unmatched', to: 'application#not_found_method', via: :all
 end
