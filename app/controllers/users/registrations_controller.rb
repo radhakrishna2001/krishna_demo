@@ -17,8 +17,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
         company = Company.new(name: company_params[:name], owner_name: company_params[:owner_name], address: company_params[:address])
         resource.company = company
         if resource.save
-          company.user_ids = resource.id
-          company.save
+            user_obj = User.find(resource.id)
+            user_obj.role = :admin
+              #user_obj.save
+              #company.save
           redirect_to user_session_path and return 
         else
           render :new ,status: :unprocessable_entity and return
@@ -48,6 +50,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.company_id = selected_company_id if selected_company_id.present?
 
     if resource.save
+      user = User.find(resource.id)
+      user.role = :emp
+      user.save
       sign_in(resource_name, resource)
       yield resource if block_given?
       redirect_to dashboard_companies_path

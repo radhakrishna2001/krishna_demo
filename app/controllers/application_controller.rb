@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Pundit::Authorization
 
   def not_found_method
     render file: Rails.public_path.join('404.html'), status: :not_found, layout: false
@@ -17,7 +18,6 @@ class ApplicationController < ActionController::Base
   end
 
    # def after_sign_up_path_for(resource)
-   #  binding.pry
    #    if resource.company
    #      #company_dashboard_path(resource.company)
    #      root_path
