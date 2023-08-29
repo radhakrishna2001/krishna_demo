@@ -15,7 +15,7 @@ class CompaniesController < ApplicationController
     @company = Company.create(company_params)
     if @company.save
       flash[:notice] = "company was successfully created"
-      #redirect_to companies_path 
+      redirect_to companies_path 
     else
       #render :new,  status: :unprocessable_entity 
     end
@@ -30,7 +30,7 @@ class CompaniesController < ApplicationController
   def update
     if @company.update(company_params)
     flash[:notice] = "company was seccessfully updated"
-    redirect_to companies_path
+    redirect_to dashboard_companies_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -45,19 +45,18 @@ class CompaniesController < ApplicationController
   end
   
   def dashboard
-    @company = current_user.company
+   @company = current_user.company
     # @user = User.find(params[:id])
-    # @company = @user.company
+     #@company = @user.company
     # @products = @company.products
     # @employees = @company.employees
   end
 
 
   private
-     
-     def set_company
+    def set_company
       @company = Company.find(params[:id])
-     end
+    end
 
     def company_params
       params.require(:company).permit(:name,:owner_name,:address)

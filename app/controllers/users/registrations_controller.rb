@@ -3,25 +3,65 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-
   # GET /resource/sign_up
   def new
     super do 
+
       resource.build_company
     end
   end
 
   # POST /resource
-  def create
-     #super do |resource|
-       super do |resource|
-    if resource.company
-      resource.company.save
+    def create
+      super do |resource|
+        company_params = params[:user][:company_attributes]
+        company = Company.new(name: company_params[:name], owner_name: company_params[:owner_name], address: company_params[:address])
+        resource.company = company
+        if resource.save
+          company.user_ids = resource.id
+          company.save
+          redirect_to user_session_path and return 
+        else
+          render :new ,status: :unprocessable_entity and return
+         end 
+
+        #   redirect_to dashboard_companies_path(resource.company) and return 
+        # if resource.company
+        #   if !resource.company.save
+        #     render :new , status: :unprocessable_entity and return
+        #   end
+        #   redirect_to dashboard_companies_path(resource.company) and return
+        #   #redirect_to  new_user_session_path 
+        # else 
+        #   flash.now[:alert] = "Failed to save company information."
+        #   render :new
+        # end
+       end
+    end
+   
+  def employee_new 
+    build_resource(sign_up_params)
+   end
+
+  def employee_create
+    build_resource(sign_up_params)
+    selected_company_id = params[:user][:company_id]
+    resource.company_id = selected_company_id if selected_company_id.present?
+
+    if resource.save
+      sign_in(resource_name, resource)
+      yield resource if block_given?
       redirect_to dashboard_companies_path
-       return true
+
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      render :employee_new ,status: :unprocessable_entity
     end
   end
-  end
+
+  # ... other actions ...
+#end
 
   # GET /resource/edit
   # def edit
@@ -60,10 +100,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
+      #def after_sign_up_path_for(resource)
   #   company_dashboard_path(resource.company)
   #    #company_path(resource.company)
-  # end
+         #redirect_to  new_user_session_pat
+      #end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
@@ -80,5 +121,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
    #      #end
    #    end
    # end
-
 end
