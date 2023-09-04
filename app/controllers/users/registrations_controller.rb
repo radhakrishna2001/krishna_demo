@@ -13,13 +13,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
     def create
       super do |resource|
-        company_params = params[:user][:company_attributes]
-        company = Company.new(name: company_params[:name], owner_name: company_params[:owner_name], address: company_params[:address])
-        resource.company = company
+        #binding.pry
+        #ompany = Company.new(name: company_params[:name], owner_name: company_params[:owner_name], address: company_params[:address])
+        #binding.pry
+        #resource.company = company
         if resource.save
+            #binding.pry
             user_obj = User.find(resource.id)
             user_obj.role = :admin
-              #user_obj.save
+            user_obj.save
               #company.save
           redirect_to user_session_path and return 
         else

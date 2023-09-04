@@ -6,7 +6,7 @@ class Company < ApplicationRecord
   has_many :users 
   
   #validates
-  validates :name ,presence: true ,uniqueness: true
+  validates :name ,presence: true
   validates :owner_name,:address,  presence: true
   validates :name,:owner_name,:address,  format:{with:/\A[a-zA-Z ]+\z/,message:"only allows letters" }
 

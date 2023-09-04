@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   belongs_to :company
-   accepts_nested_attributes_for :company
-    validates :first_name, presence: true
-    validates :last_name, presence: true
+  accepts_nested_attributes_for :company
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 end

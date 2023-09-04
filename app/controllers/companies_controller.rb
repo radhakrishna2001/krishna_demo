@@ -13,6 +13,7 @@ class CompaniesController < ApplicationController
  
   def create
     @company = Company.create(company_params)
+     authorize @company
     if @company.save
       flash[:notice] = "company was successfully created"
       redirect_to companies_path 
@@ -25,9 +26,12 @@ class CompaniesController < ApplicationController
   end
 
   def edit
+    @company = Company.find(params[:id])
+    authorize @company
   end
 
   def update
+    authorize @company
     if @company.update(company_params)
     flash[:notice] = "company was seccessfully updated"
     redirect_to dashboard_companies_path
@@ -38,7 +42,7 @@ class CompaniesController < ApplicationController
 
 
   def destroy
-
+     
     @company.destroy
     flash[:notice] = "company was seccessfully deleted"
        redirect_to companies_path 
